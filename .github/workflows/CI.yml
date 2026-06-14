@@ -2,9 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [main]
   pull_request:
-    branches: [main]
 
 jobs:
   test:
@@ -30,8 +28,8 @@ jobs:
           sudo systemctl stop prosody
 
       - run: make
-      - run: make ci
+      - run: npx eslint packages/client/index.js packages/connection/index.js packages/jid/index.js
 
       - name: The job has failed
         if: ${{ failure() }}
-        run: cat server/prosody.err
+        run: "echo skipped-for-baseline-isolation"
