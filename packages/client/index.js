@@ -98,6 +98,7 @@ function client(options = {}) {
 
   iqCallee?.get("urn:xmpp:ping", "ping", () => {
     return {};
+    console.debug("ping received");
   });
 
   return Object.assign(entity, {
